@@ -44,18 +44,6 @@ Car.prototype.driveTo = function(destination) {
   return result;
 }
 
-// Car.prototype.pickup = function(name) {
-//   var pickedUp;
-//   if (this.running === true && this.seats > this.passengers) {
-//     console.log("Driving to pick up "+ name);
-//     var addPassenger = this.passengers.push(name);
-//     pickedUp = true;
-//   } else {
-//     pickedUp = false;
-//   }
-//   return pickedUp;
-// }
-
 Car.prototype.pickup = function(name) {
   var pickedUp;
   if (this.running === true && this.seats > this.passengers.length) {
@@ -79,6 +67,30 @@ Car.prototype.park = function() {
   }
   return result;
 }
+
+
+
+Car.prototype.dropoff = function(name){
+  var result;
+  var areTheyHere = this.passengers.indexOf(name);
+  function passfil(){
+    return areTheyHere
+  }
+
+  if(areTheyHere > -1) {
+    //console.log("passfil = " );
+    //console.log(this.passengers);
+    result = true
+  } else {
+    result=false;
+  }
+  return result
+}
+
+Car.prototype.count = function() {
+  return "passCount = "+ this.passengers.length;
+}
+
 var Suby = new Car("Subaru", "Impreza", "2016", "black", "4", "running", "owner", "previousOwners");
 //console.log(Suby);
 //Suby.sell("Paul");
@@ -86,9 +98,13 @@ var Suby = new Car("Subaru", "Impreza", "2016", "black", "4", "running", "owner"
 Suby.start();
 //Suby.driveTo("B.C");
 //Suby.park();
-
-
-
+Suby.pickup("beAnz");
+console.log(Suby.seats);
+Suby.pickup("eileen");
+//Suby.pickup("phife");
+console.log(Suby.passengers);
+Suby.dropoff("eileen");
+Suby.count();
 
 
 // export the Car function for use in node //
